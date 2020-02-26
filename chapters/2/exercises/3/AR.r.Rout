@@ -1,0 +1,42 @@
+
+R version 3.6.2 (2019-12-12) -- "Dark and Stormy Night"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # 文件“bnd.dat”中包含了美国政府的期限为 30 年、20 年、10 年、5 年和 1 年的债券的每月指数的简单收益率数据（以列顺序给出）。数据是由 CRSP 获得的，样本的时间区间是从 1942 年 1 月至 1999 年 12 月。给期限为 5 年的债券指数的简单收益率建立一个 AR 或 MA 模型。所拟合的模型是合适的吗？
+> 
+> bnd <- read.table("m-bnd.dat", header=F)
+> 
+> months <- ((c(1:696) - 1) %% 12)+1
+> days <- numeric(696)+1
+> years <- floor((c(1:696)-1)/12)+1942
+> serials <- as.Date(paste(years, months, days, sep='-'))
+> 
+> install.packages("astsa", repos='https://mirrors.e-ducation.cn/CRAN/')
+trying URL 'https://mirrors.e-ducation.cn/CRAN/bin/windows/contrib/3.6/astsa_1.9.zip'
+Content type 'application/zip' length 811454 bytes (792 KB)
+==================================================
+downloaded 792 KB
+
+package 'astsa' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\Jeff\AppData\Local\Temp\Rtmpus31VD\downloaded_packages
+> 
+> # AR(1) for 30 years, 20 years, 10 years, 5 years and 1 year bonds' monthly return, respectively
+> sarima(bnd[1], p=1, d=0, q=0)
+Error in sarima(bnd[1], p = 1, d = 0, q = 0) : 
+  could not find function "sarima"
+Execution halted
